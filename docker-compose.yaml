@@ -1,0 +1,26 @@
+services:
+  server:
+    container_name: server
+    environment:
+      DATABASE_URL: mysql://root:123@mysql:3307/Log
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.2.0
+    command: --bind-address=0.0.0.0
+    container_name: mysql
+    ports:
+      - '3307:3306'
+    expose:
+      - '3307'
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: Log
+
+
+
