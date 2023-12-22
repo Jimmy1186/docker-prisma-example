@@ -4,18 +4,18 @@ FROM node:18
 WORKDIR /app
 
 COPY package*.json ./
-
-EXPOSE 3000
-
-RUN yarn install --production=true
+RUN yarn install
 
 COPY . .
 
+
 COPY ./wait-for-it.sh ./
+COPY ./startup.sh ./
 
+RUN npx prisma generate
 RUN chmod +x wait-for-it.sh
+RUN chmod +x startup.sh
+EXPOSE 3000
 
-CMD ["./wait-for-it.sh", "mysql:3307", "--", "./startup.sh"]
-
-
-
+# CMD ["./startup.sh"]
+CMD ["./wait-for-it.sh", "db:3306", "--", "./startup.sh"]
