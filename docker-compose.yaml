@@ -6,7 +6,7 @@ services:
     image: mysql:8.0
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: kenmec123
+      MYSQL_ROOT_PASSWORD: 123
       MYSQL_DATABASE: Log
   app:
     build: .
@@ -15,5 +15,5 @@ services:
     depends_on:
       - db
     environment:
-      DATABASE_URL: mysql://root:kenmec123@db:3306/Log?connect_timeout=900
+      DATABASE_URL: mysql://root:123@db:3306/Log?connect_timeout=900
     
