@@ -1,5 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
+npx prisma migrate dev
+yarn start
 
-npx prisma migrate dev;
-
-yarn debug
